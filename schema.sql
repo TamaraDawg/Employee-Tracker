@@ -34,5 +34,5 @@ CREATE TABLE employees (
     --the integer in roleid refers to the roles table
     FOREIGN KEY (roleid) REFERENCES roles(id),
     --this does the same, but if the person is a manager in this employee section
-    FOREIGN KEY(managerid)
-)
+    FOREIGN KEY(managerid) REFERENCES employees(id)
+);
