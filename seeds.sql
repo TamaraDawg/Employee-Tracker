@@ -17,7 +17,7 @@ INSERT INTO roles (title, salary, department_id) VALUES ('HR Manager', 65000, 4)
 INSERT INTO roles (title, salary, department_id) VALUES ('HR Specialist', 45000, 4);
 
 -- Employees
-INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES ('Charli', 'Pollard', 1, 3);
-INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES ('Will', 'Parkyn', 2, 1);
-INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES ('Jack', 'Rawlings', 3, 1);
-INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES ('Tam', 'Sferco', 4, 2);
+INSERT INTO employees (firstname, lastname, roleid, managerid) VALUES ('Charli', 'Pollard', 1, 1);
+INSERT INTO employees (firstname, lastname, roleid, managerid) VALUES ('Will', 'Parkyn', 2, NULL);
+INSERT INTO employees (firstname, lastname, roleid, managerid) VALUES ('Jack', 'Rawlings', 3, 1);
+INSERT INTO employees (firstname, lastname, roleid, managerid) VALUES ('Tam', 'Sferco', 4, NULL);

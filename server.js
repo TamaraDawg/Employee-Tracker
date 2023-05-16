@@ -109,9 +109,139 @@ function departments() {
       results.forEach((role) => {
         console.log(`ID: ${role.id} | Title: ${role.title} | Salary: ${role.salary}`);
       });
-      connection.end();
+      
       mainMenu();
 
     });
 }
+
+
+function employees() {
+
+  connection.query('SELECT * FROM employees', (error, results) => {
+    if (error) {
+      console.error('Error retrieving employees:', error);
+      connection.end();
+      return;
+    }
+
+    console.log('All Employees:');
+    results.forEach((employee) => {
+      console.log(`FirstName: ${employee.firstname} | LastName: ${employee.lastname} | Role: ${employee.roleid} | Manager: ${employee.managerid} `);
+    });
+    
+    mainMenu();
+
+  });
+}
+
+function addDepartment() {
+  inquirer
+    .prompt([
+      {
+        type: 'input',
+        name: 'departmentName',
+        message: 'Enter the name of the department:',
+      },
+    ])
+    .then((answers) => {
+      const { departmentName } = answers;
+      connection.query(
+        'INSERT INTO departments (name) VALUES (?)',
+        [departmentName],
+        (error, result) => {
+          if (error) {
+            console.error('Error adding department:', error);
+            connection.end();
+            return;
+          }
+          console.log('Department added successfully!');
+          mainMenu();
+        }
+      );
+    });
+}
+
+
+
+
+
+function addEmployee() {
+  inquirer
+    .prompt([
+      {
+        type: 'input',
+        name: 'EmployeeName',
+        message: 'Enter the name of the Employee:',
+      },
+    ])
+    .then((answers) => {
+      const { employeeName } = answers;
+      connection.query(
+        'INSERT INTO employee (name) VALUES (?)',
+        [employeeName],
+        (error, result) => {
+          if (error) {
+            console.error('Error adding employee:', error);
+            connection.end();
+            return;
+          }
+          console.log('employee added successfully!');
+          mainMenu();
+        }
+      );
+    });
+}
+
+
+
+
+
+function addRole() {
+  inquirer
+    .prompt([
+      {
+        type: 'input',
+        name: 'RoleName',
+        message: 'Enter the name of the Role:',
+      },
+    ])
+    .then((answers) => {
+      const { roleName } = answers;
+      connection.query(
+        'INSERT INTO roles (name) VALUES (?)',
+        [roleName],
+        (error, result) => {
+          if (error) {
+            console.error('Error adding role:', error);
+            connection.end();
+            return;
+          }
+          console.log('Role added successfully!');
+          mainMenu();
+        }
+      );
+    });
+}
+
+
+
+
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
