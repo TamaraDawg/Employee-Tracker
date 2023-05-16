@@ -1,7 +1,26 @@
 const inquirer = require('inquirer');
 console.log('code running');
+require('dotenv').config();
+const mysql = require('mysql');
 
-//this isn't working.
+//connection 
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE
+
+
+})
+
+connection.connect((error) => {
+  if (error) {
+    console.error('Error connecting to the database:', error);
+    return;
+  }
+  console.log('Connected to the database!');
+
+//this is working.
 function mainMenu() {
   console.log('mainmenu started to run')
   inquirer
@@ -58,3 +77,25 @@ function mainMenu() {
 
 
 mainMenu();
+
+function departments() {
+   
+
+  connection.query('SELECT * FROM departments', (error, results) => {
+      if (error) {
+        console.error('Error retrieving departments:', error);
+        return;
+      }
+  
+      console.log('All Departments:');
+      results.forEach((department) => {
+        console.log(`ID: ${department.id} | Name: ${department.name}`);
+      });
+  
+      mainMenu();
+    });
+  
+  
+  
+}
+})
