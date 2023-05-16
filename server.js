@@ -95,7 +95,23 @@ function departments() {
       mainMenu();
     });
   
-  
-  
+  }
+  function roles() {
+
+    connection.query('SELECT * FROM roles', (error, results) => {
+      if (error) {
+        console.error('Error retrieving roles:', error);
+        connection.end();
+        return;
+      }
+
+      console.log('All Roles:');
+      results.forEach((role) => {
+        console.log(`ID: ${role.id} | Title: ${role.title} | Salary: ${role.salary}`);
+      });
+      connection.end();
+      mainMenu();
+
+    });
 }
-})
+});
